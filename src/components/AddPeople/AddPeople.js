@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 const url = 'http://localhost:5000/employee';
 
 const AddPeople = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const handleAddEmployee = async (data) => {
         const employee = {
             firstName: data.firstName,
@@ -17,7 +17,10 @@ const AddPeople = () => {
         try {
             await axios.post(url, employee)
                 .then((employee) => {
-                    window.location.reload();
+                    // window.location.reload();
+                    toast.success("New employee added")
+                    reset()
+
                 })
 
 
@@ -29,7 +32,7 @@ const AddPeople = () => {
     }
     return (
         <div className='container mx-auto'>
-            <h2 className="text-3xl mt-4 text-center font-bold">Add A Employee</h2>
+            <h2 className="text-3xl mt-4 text-center font-bold">Add An Employee</h2>
             <div className=' p-7 mb-10 border-solid border-2 mt-7 mx-10 border-blue-200 drop-shadow-lg rounded'>
 
                 <form onSubmit={handleSubmit(handleAddEmployee)}>
@@ -58,9 +61,9 @@ const AddPeople = () => {
                         </div>
 
                         <div className="form-control w-full ">
-                            <label className="label"><span className="label-text">Phone</span></label>
+                            <label className="label"><span className="label-text">Phone Number</span></label>
                             <input type="text"
-                                {...register("phone", { required: "Phone number is required" })}
+                                {...register("phone", { required: "Phone number number is required" })}
                                 className="input input-bordered w-full  " />
                             {errors.phone && <p className='text-red-600'>{errors.phone?.message}</p>}
                         </div>
