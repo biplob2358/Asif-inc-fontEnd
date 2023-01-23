@@ -1,9 +1,24 @@
+import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+const url = 'http://localhost:5000/employee';
 
 const AddPeople = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const handleAddEmployee = data => {
+    const handleAddEmployee = async (data) => {
+        const employee = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phone: data.phone
+        }
+
+        try {
+            const result = await axios.post(url, employee);
+
+        } catch (error) {
+
+        }
 
     }
     return (
