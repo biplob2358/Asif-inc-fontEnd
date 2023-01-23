@@ -3,8 +3,10 @@ import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './components/Home/Home';
 import EmployeeList from './components/EmployeeList/EmployeeList';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
+  <Toaster />
   const router = createBrowserRouter([
     {
       path: '/',

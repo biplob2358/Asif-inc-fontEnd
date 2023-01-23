@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 const url = 'http://localhost:5000/employee';
 
 const AddPeople = () => {
@@ -14,10 +15,15 @@ const AddPeople = () => {
         }
 
         try {
-            const result = await axios.post(url, employee);
+            await axios.post(url, employee)
+                .then((employee) => {
+                    window.location.reload();
+                })
+
+
 
         } catch (error) {
-
+            toast.error(error)
         }
 
     }
